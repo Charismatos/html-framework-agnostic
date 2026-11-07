@@ -1,0 +1,59 @@
+<!--
+  =============================================================================
+  WHAT: Pure Semantic HTML Registration Layout Blueprint (Class-Free)
+  WHEN: Use when rendering registration interfaces in static or non-Laravel environments.
+  WHY:  Provides clean, accessible, zero-dependency markup without hardcoded styling classes.
+  WHO:  Front-end developers and template designers.
+  WHERE: Placed inside static HTML views, templates, or component partials.
+  HOW:  Instantiate the layout structure and bind server-side form data dynamically.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS:
+  - To add a new input field: Insert a new wrapper block matching the structure below, 
+    updating the 'id', 'name', and 'label' attributes.
+  =============================================================================
+-->
+<div>
+    <div>
+        
+        <!-- Optional Success Feedback Notification Banner -->
+        @if(session('delete_success'))
+        <div role="alert">
+            <p>Deleted Successfully</p>
+        </div>
+        @endif
+
+        <h1>REGISTER</h1>
+
+        <!-- Registration Submission Form Element -->
+        <form action="{{ route('register.store') }}" method="POST">
+            @csrf
+
+            <!-- Field 1: Name Input -->
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required autocomplete="name">
+            </div>
+
+            <!-- Field 2: Username Input -->
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" autocomplete="username">
+            </div>
+
+            <!-- Field 3: Email Input -->
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+
+            <!-- Field 4: Password Input -->
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <!-- Form Submission Action -->
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
