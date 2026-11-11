@@ -1,0 +1,48 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise-Grade Framework-Agnostic Pure HTML User Edit Profile Layout
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies.
+  WHO:  Frontend engineers, full-stack architects, and cross-platform UI maintainers.
+  WHERE: Saved as public/layouts/user-edit.html or integrated into template engines.
+  HOW:  Renders responsive form containers, input fields, and update actions.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NEW FIELDS: Append a new form-group container with label and input elements inside the form.
+  =============================================================================
+-->
+
+<div class="pf-screen-center">
+    <div class="pf-card-bounding-box">
+        <form action="/users/update" method="POST" class="pf-card pf-centered" novalidate>
+            <!-- Method override placeholder -->
+            <input type="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="_token" value="">
+
+            <h1 class="pf-centered">EDIT PROFILE</h1>
+
+            <div class="pfe-alert-box" style="display: none;">
+                <!-- Error messages container -->
+            </div>
+
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="" required autocomplete="name">
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="" required autocomplete="email">
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="pf-actions">
+                <button type="submit" class="pb-btn pb-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

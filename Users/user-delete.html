@@ -1,0 +1,90 @@
+<!--
+=============================================================================
+WHAT: Standalone Enterprise User Profile Deletion Template (Pure HTML)
+WHEN: Rendered in non-Laravel implementations or decoupled frontend micro-frontends requiring safe account termination flows.
+WHY:  Enforces semantic HTML structure, strict security guidelines, and modular design consistency without depending on proprietary backend macro wrappers.
+WHO:  Frontend engineers and UI architects maintaining multi-platform component specifications.
+WHERE: Saved as standalone HTML document templates or component layout partials.
+HOW:  Utilizes semantic section elements, structured definition rows, explicit form submission boundaries, and native action states.
+-----------------------------------------------------------------------------
+FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+- ADDING USER FIELDS: Insert a new wrapper division block containing descriptive label spans and dynamic data interpolations.
+- MODIFYING FORM ACTION: Update the form 'action' attribute endpoint to point to your designated backend service controller URL.
+- PINPOINTING CODE ADDITIONS: To add extra confirmation input fields (e.g., password confirmation or deletion reason dropdowns), insert the markup directly above the primary action group container.
+=============================================================================
+-->
+
+<div>
+    <div>
+        <!-- 
+        =============================================================================
+        WHAT: Profile Termination Heading Module
+        WHEN: Displayed at the apex of the card wrapper to signal critical account deletion state.
+        WHY:  Provides immediate visual context to prevent accidental destructive actions.
+        =============================================================================
+        -->
+        <h1>DELETE PROFILE</h1>
+
+        <!-- 
+        =============================================================================
+        WHAT: User Identification Details Container
+        WHEN: Renders profile attributes (Name and Email) for explicit visual verification prior to deletion.
+        WHY:  Ensures users verify they are removing the correct active identity instance.
+        =============================================================================
+        -->
+        <div>
+            <div>
+                <span>Name:</span>
+                <span><!-- [Dynamic User Name Injection Variable] --></span>
+            </div>
+            <div>
+                <span>Email:</span>
+                <span><!-- [Dynamic User Email Injection Variable] --></span>
+            </div>
+        </div>
+
+        <!-- 
+        =============================================================================
+        WHAT: Destructive Action Warning Prompt
+        WHEN: Rendered directly above the action controls to highlight irreversible consequences.
+        WHY:  Improves user safety awareness regarding permanent record purging.
+        =============================================================================
+        -->
+        <p>Are You Sure You Want To Delete This Account?</p>
+
+        <!-- 
+        =============================================================================
+        WHAT: Action Button Group Container
+        WHEN: Organizes cancellation and confirmation options in a clean horizontal or vertical flex layout.
+        WHY:  Separates safe navigational escape routes from destructive system commands.
+        =============================================================================
+        -->
+        <div>
+            <!-- Safe Exit / Reversion Anchor Link -->
+            <a href="<!-- [Dashboard URL Endpoint] -->">No</a>
+
+            <!-- Destructive Form Submission Module -->
+            <form action="<!-- [Destroy Route Endpoint] -->" method="POST">
+                <!-- Security Token Injection Placeholder -->
+                <input type="hidden" name="_token" value="<!-- [CSRF Token] -->">
+                <!-- HTTP Method Spoofing Parameter for DELETE operation -->
+                <input type="hidden" name="_method" value="DELETE">
+                
+                <button type="submit">Yes, Delete Account</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--
+=============================================================================
+HOW TO REFERENCE, CALL, OR CUSTOMIZE THIS TEMPLATE ACROSS 10,000+ PROJECTS:
+-----------------------------------------------------------------------------
+1. STANDALONE TEMPLATE EMBEDDING:
+   Include this snippet directly within your master layout body wrapper or render it dynamically via your template engine injector.
+2. CUSTOMIZING ENDPOINTS & ATTRIBUTES:
+   - Replace placeholder paths in `href` and `action` attributes with your absolute or relative project routing targets.
+3. PINPOINTING FUTURE CODE ADDITIONS:
+   - To inject extra verification fields (e.g., typing "DELETE" to confirm), place your input elements directly inside the form block above the submit button.
+=============================================================================
+-->

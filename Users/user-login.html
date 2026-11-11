@@ -1,0 +1,54 @@
+<!--
+  =============================================================================
+  WHAT: Framework-Agnostic Pure HTML Login Layout Template
+  WHEN: Deployed in non-Laravel systems requiring standard authentication inputs.
+  WHY:  Provides a completely decoupled, clean HTML structure free of framework-specific directives.
+  WHO:  Frontend developers and multi-platform system engineers.
+  WHERE: Saved as public/auth/login.html or integrated into template engines.
+  HOW:  Renders standard form controls, semantic containers, and action triggers.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING INPUT FIELDS: Insert a new wrapper containing a <label> and <input> element inside the <form>.
+  =============================================================================
+-->
+
+<div>
+    <div>
+        <!-- Flash Message Container Example -->
+        <div role="alert" style="display: none;">
+            <p>You Registered Successfully</p>
+        </div>
+
+        <div role="alert" style="display: none;">
+            <p>Profile Updated Successfully</p>
+        </div>
+
+        <h1>LOGIN</h1>
+
+        <form action="/login" method="POST" novalidate>
+            <!-- CSRF token placeholder -->
+            <input type="hidden" name="_token" value="">
+
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div>
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember Me</label>
+            </div>
+
+            <button type="submit">LogIn</button>
+        </form>
+
+        <div>
+            <a href="/register">Create Account</a>
+        </div>
+    </div>
+</div>

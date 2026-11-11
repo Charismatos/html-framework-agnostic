@@ -1,0 +1,94 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise-Grade Framework-Agnostic Pure HTML Dashboard Layout
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies.
+  WHO:  Frontend engineers, full-stack architects, and cross-platform UI maintainers.
+  WHERE: Saved as public/layouts/user-dashboard.html or integrated into template engines.
+  HOW:  Renders responsive grid viewports, collapsible sidebars, profile data blocks, and action hooks.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NAVIGATION LINKS: Append a new <a href="url" class="dashboard-nav__link"> element 
+    inside the <nav class="dashboard-nav"> block.
+  - ADDING PROFILE FIELDS: Insert a new profile-details__row block inside the 
+    <section class="profile-section"> container.
+  =============================================================================
+-->
+
+<div class="dashboard-layout">
+    <!-- Top Bar visible only on Mobile/Tablet viewports -->
+    <header class="mobile-header">
+        <button type="button" class="mobile-header__toggle" data-sidebar-toggle aria-label="Toggle Navigation">
+            <span class="aside-sidebar__toggle-icon"></span>
+        </button>
+        <span class="mobile-header__title">Menu</span>
+    </header>
+
+    <div class="app-viewport">
+        <!-- Sidebar Navigation Surface -->
+        <aside class="aside-sidebar" id="asideSidebar" aria-label="Main Navigation">
+            <div class="aside-sidebar__header">
+                <h2 class="aside-sidebar__title">Menu</h2>
+                <button type="button" class="aside-sidebar__toggle" data-sidebar-toggle aria-label="Toggle Navigation">
+                    <span class="aside-sidebar__toggle-icon"></span>
+                </button>
+            </div>
+
+            <nav class="dashboard-nav aside-sidebar__nav">
+                <a href="/loans/create" class="dashboard-nav__link">Apply for Loan</a>
+                <a href="/loans/dashboard" class="dashboard-nav__link">View Loans</a>
+                <a href="/roles/create" class="dashboard-nav__link">Create User Roles</a>
+                <a href="/users/roles/invite" class="dashboard-nav__link">Invite Candidates for Roles</a>
+                <a href="/users/roles/assign" class="dashboard-nav__link">Assign User Roles</a>
+                <a href="/loan-products/create" class="dashboard-nav__link">Create Loan Product</a>
+                <a href="/" class="dashboard-nav__link dashboard-nav__link--primary">Go To Home Page</a>
+            </nav>
+        </aside>
+
+        <!-- Main Dashboard Content Surface -->
+        <main class="dashboard-card">
+            <!-- Optional Flash Notification Container -->
+            <div data-auto-dismiss class="flash-alert flash-alert--success" role="alert" style="display: none;">
+                <span class="flash-alert__icon">&check;</span>
+                <p class="flash-alert__message">Action completed successfully</p>
+            </div>
+
+            <header class="dashboard-header">
+                <h1 class="dashboard-header__title">DASHBOARD</h1>
+                <h2 class="dashboard-header__subtitle">
+                    Welcome, <span class="dashboard-header__username">User Name!</span>
+                </h2>
+            </header>
+
+            <section class="profile-section">
+                <h3 class="profile-section__title">User Details</h3>
+                <div class="profile-details">
+                    <div class="profile-details__row">
+                        <span class="profile-details__label">Name:</span>
+                        <span class="profile-details__value">User Full Name</span>
+                    </div>
+                    <div class="profile-details__row">
+                        <span class="profile-details__label">Email:</span>
+                        <span class="profile-details__value">user@example.com</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="dashboard-actions">
+                <a href="/users/edit" class="btn btn--secondary">
+                    Edit Profile
+                </a>
+                <a href="/users/delete-confirm" class="btn btn--danger">
+                    Delete Account
+                </a>
+
+                <form id="logout-form" action="/logout" method="POST" class="is-hidden">
+                    <!-- Token placeholder -->
+                </form>
+                <button type="button" class="btn btn--outline" data-logout-trigger>
+                    Logout
+                </button>
+            </div>
+        </main>
+    </div>
+</div>
