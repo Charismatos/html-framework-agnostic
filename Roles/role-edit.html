@@ -1,0 +1,77 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise Role Edit Layout (Framework-Agnostic HTML)
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies for updating system roles.
+  WHO:  Frontend engineers, full-stack architects, and system administrators.
+  WHERE: Saved as public/layouts/role-edit.html or integrated into template engines.
+  HOW:  Renders responsive form containers, native inputs, alert boxes, method spoofing, and PUT action hooks.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NEW FIELDS: Duplicate a form-group block and update the `for`, `id`, `name`, and `type` attributes.
+  - MODIFYING FORM ACTION: Update the form 'action' attribute to point to your backend routing endpoint.
+  =============================================================================
+-->
+
+<div>
+    <div>
+
+        <!-- Role Management Header Section -->
+        <header>
+            <h1>Edit Role: Administrator</h1>
+            <p>Modify configuration parameters for Role ID #1.</p>
+            <a href="/roles">Back to List</a>
+        </header>
+
+        <!-- Role Update Form Wrapper -->
+        <form action="/roles/update/1" method="POST" novalidate>
+            <!-- Security Tokens and Method Spoofing for non-Laravel systems -->
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="_token" value="sample-csrf-token">
+
+            <!-- Top-Level Validation Error Bag Container -->
+            <div style="display: none;">
+                <!-- Error messages injected here via JS -->
+            </div>
+
+            <!-- Role Name Field -->
+            <div>
+                <label for="name">Role Name</label>
+                <input type="text" id="name" name="name" value="Administrator" placeholder="Enter role name (e.g., Administrator)" required autocomplete="off">
+            </div>
+
+            <!-- Role Slug Field -->
+            <div>
+                <label for="slug">Role Slug</label>
+                <input type="text" id="slug" name="slug" value="administrator" placeholder="Leave blank to auto-generate from name" autocomplete="off">
+            </div>
+
+            <!-- Hierarchy Level Field -->
+            <div>
+                <label for="level">Hierarchy Level Weight</label>
+                <input type="number" id="level" name="level" value="10" placeholder="99" min="0" max="999" required>
+            </div>
+
+            <!-- Description Field -->
+            <div>
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Describe role scope and responsibilities..." rows="4">Full system administrative privileges</textarea>
+            </div>
+
+            <!-- System Flag Checkbox -->
+            <div>
+                <input type="hidden" name="is_system" value="0">
+                <input type="checkbox" id="is_system" name="is_system" value="1" checked>
+                <label for="is_system">System Protected Role</label>
+            </div>
+
+            <!-- Submit Action -->
+            <div>
+                <button type="submit" id="update-role-btn" aria-label="Click here to securely save changes to the existing role">
+                    &#128221; Update Role
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

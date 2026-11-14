@@ -1,0 +1,74 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise User Role Assignments Directory Layout (Framework-Agnostic HTML)
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies for auditing and managing system user role assignments and hierarchy ranks.
+  WHO:  Frontend engineers, full-stack architects, and system administrators.
+  WHERE: Saved as public/layouts/roles-assigned-index.html or integrated into template engines.
+  HOW:  Renders responsive directory cards, success notifications, management header actions, and tabular data iteration hooks.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NEW COLUMNS: Insert a new `<th>` element in the table header and a corresponding `<td>` cell inside the user iteration loop.
+  - MODIFYING ROUTE BINDINGS: Update the anchor `href` attributes to point to your backend routing endpoints.
+  =============================================================================
+-->
+
+<main>
+    <div>
+
+        <!-- Success Flash Notification Display -->
+        <div style="display: none;">
+            <!-- Flash message container -->
+        </div>
+
+        <!-- Role Management Header Section -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div>
+                <h1 style="margin: 0 0 0.5rem 0; font-size: 1.5rem;">User Role Assignments Directory</h1>
+                <p style="margin: 0; color: #6b7280; font-size: 0.875rem;">Overview of current roles assigned across system users.</p>
+            </div>
+            <a href="/users/roles/assign">Assign Roles</a>
+        </div>
+
+        <!-- User Role Records Tabular Data Container -->
+        <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem;">
+            <thead>
+                <tr style="border-bottom: 2px solid #e5e7eb; text-align: left;">
+                    <th style="padding: 0.75rem;">User</th>
+                    <th style="padding: 0.75rem;">Highest Rank</th>
+                    <th style="padding: 0.75rem;">Attached Roles</th>
+                    <th style="padding: 0.75rem; text-align: right;">Actions</th>
+                    <th style="padding: 0.75rem; text-align: right;">Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                    <td style="padding: 0.75rem;">
+                        <strong>John Doe</strong><br>
+                        <span style="font-size: 0.8125rem; color: #6b7280;">&#64;johndoe</span>
+                    </td>
+                    <td style="padding: 0.75rem;">
+                        <span style="background: #eff6ff; color: #1d4ed8; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8125rem;">
+                            Level 10
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem;">
+                        <span style="background: #f3f4f6; color: #374151; padding: 0.2rem 0.4rem; border-radius: 0.2rem; font-size: 0.75rem; margin-right: 0.25rem;">
+                            Administrator (L10)
+                        </span>
+                        <span style="background: #f3f4f6; color: #374151; padding: 0.2rem 0.4rem; border-radius: 0.2rem; font-size: 0.75rem; margin-right: 0.25rem;">
+                            Editor (L20)
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; text-align: right;">
+                        <a href="/users/roles/show/johndoe">View Details &rarr;</a>
+                    </td>
+                    <td style="padding: 0.75rem; text-align: right;">
+                        <a href="/users/roles/edit/johndoe">Modify Assignments</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</main>

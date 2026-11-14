@@ -1,0 +1,76 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise Role Creation Layout (Framework-Agnostic HTML)
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies for creating system roles.
+  WHO:  Frontend engineers, full-stack architects, and system administrators.
+  WHERE: Saved as public/layouts/role-create.html or integrated into template engines.
+  HOW:  Renders responsive form containers, native inputs, alert boxes, and POST action hooks.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NEW FIELDS: Duplicate a form-group block and update the `for`, `id`, `name`, and `type` attributes.
+  - MODIFYING FORM ACTION: Update the form 'action' attribute to point to your backend routing endpoint.
+  =============================================================================
+-->
+
+<div class="pf-screen-center">
+    <div class="pf-card-bounding-box">
+
+        <!-- Role Management Header Section -->
+        <header>
+            <h1 class="pf-centered">Create Role</h1>
+            <p>Add a new authorization tier to the application.</p>
+            <a href="/roles" class="pl-link pl-muted">Back to List</a>
+        </header>
+
+        <!-- Role Creation Form Wrapper -->
+        <form action="/roles/store" method="POST" class="pf-card pf-centered" novalidate>
+            <!-- Security Token for non-Laravel systems -->
+            <input type="hidden" name="_token" value="sample-csrf-token">
+
+            <!-- Top-Level Validation Error Bag Container -->
+            <div class="pfe-alert-box" style="display: none;">
+                <!-- Error messages injected here via JS -->
+            </div>
+
+            <!-- Role Name Field -->
+            <div class="form-group">
+                <label for="name" class="pl-required">Role Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter role name (e.g., Administrator)" required autocomplete="off">
+            </div>
+
+            <!-- Role Slug Field -->
+            <div class="form-group">
+                <label for="slug">Role Slug</label>
+                <input type="text" id="slug" name="slug" class="form-control" placeholder="Leave blank to auto-generate from name" autocomplete="off">
+            </div>
+
+            <!-- Hierarchy Level Field -->
+            <div class="form-group">
+                <label for="level" class="pl-required">Hierarchy Level Weight</label>
+                <input type="number" id="level" name="level" class="form-control" value="99" placeholder="99" min="0" max="999" required>
+            </div>
+
+            <!-- Description Field -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" class="form-control" placeholder="Describe role scope and responsibilities..." rows="4"></textarea>
+            </div>
+
+            <!-- System Flag Checkbox -->
+            <div class="form-group checkbox-wrapper">
+                <input type="hidden" name="is_system" value="0">
+                <input type="checkbox" id="is_system" name="is_system" value="1" class="form-checkbox">
+                <label for="is_system">System Protected Role</label>
+            </div>
+
+            <!-- Submit Action -->
+            <div class="pf-actions">
+                <button type="submit" id="save-role-btn" class="pb-btn pb-primary" aria-label="Click here to securely save the new role and sync permissions">
+                    &#128190; Save Role
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise Batch User Role Assignment & Invitation Layout (Framework-Agnostic HTML)
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies for batch dispatching role invitations.
+  WHO:  Frontend engineers, full-stack architects, and system administrators.
+  WHERE: Saved as public/layouts/roles-assignment.html or integrated into template engines.
+  HOW:  Renders responsive grid containers, recipient textareas, rank threshold selects, and POST action hooks.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NEW BATCH FIELDS: Insert additional input controls inside the unified form wrapper before the submission footer.
+  - MODIFYING FORM ACTION: Update the form 'action' attribute to point to your backend routing endpoint.
+  =============================================================================
+-->
+
+<main data-assigner-level="10">
+    <div>
+
+        <!-- Header Section -->
+        <header>
+            <h1>Batch Role Assignment & Candidate Invitations</h1>
+            <p>Select role levels, choose target roles, and dispatch invitations with pre-assigned permissions.</p>
+        </header>
+
+        <!-- Dynamic Alert Message Component Reference -->
+        <div id="ra-alert-message" style="display: none; margin-bottom: 1.5rem;"></div>
+
+        <!-- Authenticated Administrator Banner -->
+        <div style="margin-bottom: 1.5rem; padding: 0.75rem 1rem; border-left: 4px solid #2563eb; background-color: #f9fafb;">
+            <p style="margin: 0; font-size: 0.875rem;">
+                <strong>Logged In Administrator (Assigner):</strong>
+                John Doe (<span>johndoe</span>)
+                &mdash; <span style="color: #2563eb; font-weight: 600;">Authority Rank: Level 10</span>
+            </p>
+        </div>
+
+        <!-- Unified Batch Role Assignment and Invitation Form -->
+        <form id="ra-role-assignment-form" action="/users/roles/send-invites" method="POST" novalidate style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;">
+            <!-- Security Token for non-Laravel systems -->
+            <input type="hidden" name="_token" value="sample-csrf-token">
+            <input type="hidden" name="invited_by_username" value="johndoe">
+
+            <!-- Top-Level Validation Error Bag Container -->
+            <div style="grid-column: span 2; display: none;">
+                <!-- Error messages injected here via JS -->
+            </div>
+
+            <!-- Step 1: Recipients Input Textarea -->
+            <div style="grid-column: span 2; margin-bottom: 1.5rem;">
+                <label for="recipients">Target Recipient Emails</label>
+                <p style="font-size: 0.8125rem; color: #6b7280; margin-top: 0.25rem; margin-bottom: 0.5rem;">
+                    Enter multiple emails separated by commas or newlines.
+                </p>
+                <textarea id="recipients" name="recipients" rows="3" style="width: 100%; padding: 0.75rem; box-sizing: border-box; resize: none;" placeholder="user1@example.com, user2@example.com, user3@example.com" required></textarea>
+            </div>
+
+            <!-- Step 2: Level Threshold Filter Dropdown -->
+            <div style="grid-column: span 2; margin-bottom: 1rem;">
+                <label for="assigner_user_level">Filter Roles by Target Level Threshold</label>
+                <select id="assigner_user_level" name="user_level" style="width: 100%; padding: 0.5rem; box-sizing: border-box;">
+                    <option value="" disabled selected>-- Select Level Threshold --</option>
+                    <option value="11">Level 11 and Above</option>
+                    <option value="20">Level 20 and Above</option>
+                    <option value="30">Level 30 and Above</option>
+                </select>
+            </div>
+
+            <!-- Step 3: Dynamic Role Checkbox Selection Container -->
+            <div style="grid-column: span 2; margin-bottom: 1.5rem;">
+                <label>Select Roles to Attach to Batch Recipients</label>
+                <div id="ra-role-selection-box" style="border: 1px solid #d1d5db; border-radius: 6px; padding: 1rem; min-height: 140px; background: #f9fafb;">
+                    <p style="color: #6b7280; margin: 0;">Please select a level threshold above to load and display eligible roles for batch assignment.</p>
+                </div>
+            </div>
+
+            <!-- Form Action Footer -->
+            <div style="grid-column: span 2; margin-top: 1rem; display: flex; justify-content: flex-end; align-items: center;">
+                <button type="submit" id="send-links-btn" aria-label="Dispatch invitation links and batch role assignments">
+                    &#9993; Request Assigned Confirmation
+                </button>
+            </div>
+        </form>
+
+    </div>
+</main>

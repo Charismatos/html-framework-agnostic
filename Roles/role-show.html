@@ -1,0 +1,65 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise Role Details Layout (Framework-Agnostic HTML)
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies for inspecting system roles.
+  WHO:  Frontend engineers, full-stack architects, and system administrators.
+  WHERE: Saved as public/layouts/role-show.html or integrated into template engines.
+  HOW:  Renders responsive inspection containers, metadata rows, and navigation action hooks.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NEW ATTRIBUTES: Duplicate a detail row container and update the property labels and values.
+  - MODIFYING ROUTE BINDINGS: Update the anchor `href` attributes to point to your backend routing endpoints.
+  =============================================================================
+-->
+
+<div>
+    <div>
+
+        <!-- Success Flash Notification Display -->
+        <div style="display: none;">
+            <!-- Flash message container -->
+        </div>
+
+        <!-- Role Management Header Section -->
+        <header>
+            <div>
+                <h1>Role Details</h1>
+                <p>System overview for role entity ID #1.</p>
+            </div>
+            <div>
+                <a href="/roles/edit/administrator">Edit Role</a>
+                <a href="/roles">View List</a>
+            </div>
+        </header>
+
+        <!-- Role Attributes Metadata Display Container -->
+        <div>
+            <div>
+                <span>Role Name</span>
+                <span>Administrator</span>
+            </div>
+            <div>
+                <span>System Slug</span>
+                <span><code>administrator</code></span>
+            </div>
+            <div>
+                <span>Hierarchy Level</span>
+                <span><code>Level 10</code></span>
+            </div>
+            <div>
+                <span>System Protected</span>
+                <span>Yes (Protected System Role)</span>
+            </div>
+            <div>
+                <span>Description</span>
+                <span>Full system administrative privileges</span>
+            </div>
+            <div>
+                <span>Created At</span>
+                <span>2026-11-14 12:00:00</span>
+            </div>
+        </div>
+
+    </div>
+</div>

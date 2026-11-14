@@ -1,0 +1,95 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise User Role Modification Layout (Framework-Agnostic HTML)
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies for fine-tuning, upgrading, or revoking individual user roles.
+  WHO:  Frontend engineers, full-stack architects, and system administrators.
+  WHERE: Saved as public/layouts/roles-assigned-update.html or integrated into template engines.
+  HOW:  Renders responsive containers, rank threshold select dropdowns, dynamic role checklist items, method spoofing, and PUT action hooks.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NEW FIELDS: Insert additional form controls inside the form wrapper before actions.
+  - MODIFYING FORM ACTION: Update the form 'action' attribute to point to your backend routing endpoint.
+  =============================================================================
+-->
+
+<main data-assigner-level="99" data-target-user-level="100" data-user-username="sample-username">
+    <div style="max-width: 700px; margin: 0 auto; padding: 2rem;">
+
+        <!-- Header Section -->
+        <header style="margin-bottom: 1.5rem;">
+            <h1>Manage User Roles: Sample User</h1>
+            <p style="color: #6b7280; font-size: 0.875rem;">
+                Update system access levels and role associations for <strong>user@example.com</strong>.
+            </p>
+            <a href="/users/roles/sample-username">Back to User Details</a>
+        </header>
+
+        <form id="ra-role-assignment-form" action="/users/roles/sample-username" method="POST" novalidate>
+            <!-- Method override for PUT request in non-Laravel systems -->
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="_token" value="sample-csrf-token">
+
+            <!-- Top-Level Validation Error Bag Container -->
+            <div style="display: none;">
+                <!-- Error messages injected here via JS -->
+            </div>
+
+            <!-- Target User Highest Rank Display Box -->
+            <div style="background: #f9fafb; border: 1px solid #d1d5db; border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem;">
+                <p style="margin: 0; font-size: 0.875rem; color: #374151;">
+                    <strong>Current Target User Highest Rank:</strong> Level 10
+                </p>
+            </div>
+
+            <!-- Level Threshold Filter Dropdown -->
+            <div style="margin-bottom: 1rem;">
+                <label for="assigned_user_level">Filter Roles by Target Level Threshold</label>
+                <select id="assigned_user_level" name="user_level" style="width: 100%; padding: 0.5rem; margin-top: 0.25rem;">
+                    <option value="" disabled selected>-- Select Level Threshold --</option>
+                    <option value="10">Level 10 and Above</option>
+                    <option value="20">Level 20 and Above</option>
+                    <option value="30">Level 30 and Above</option>
+                </select>
+            </div>
+
+            <!-- Available Roles Selection Container -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">
+                    Select Active Roles for User
+                </label>
+                <div id="ra-role-selection-box" style="border: 1px solid #d1d5db; border-radius: 6px; padding: 1rem; background: #fff; max-height: 250px; overflow-y: auto;">
+
+                    <div style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.75rem;">
+                        <input type="checkbox" name="roles[]" value="1" id="role_1" checked style="margin-top: 0.25rem; width: 1rem; height: 1rem;">
+                        <div>
+                            <label for="role_1" style="cursor: pointer; font-weight: 600; font-size: 0.875rem; color: #111827;">
+                                Administrator (admin) - Level 10
+                            </label>
+                            <span style="display: block; color: #6b7280; font-size: 0.75rem;">Full system administrative privileges</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.75rem;">
+                        <input type="checkbox" name="roles[]" value="2" id="role_2" style="margin-top: 0.25rem; width: 1rem; height: 1rem;">
+                        <div>
+                            <label for="role_2" style="cursor: pointer; font-weight: 600; font-size: 0.875rem; color: #111827;">
+                                Editor (editor) - Level 20
+                            </label>
+                            <span style="display: block; color: #6b7280; font-size: 0.75rem;">Content management and moderation privileges</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Form Action Footer -->
+            <div style="display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+                <button type="submit" id="update-user-roles-btn" aria-label="Securely synchronize and update user roles and level threshold">
+                    &#128190; Update Assigned Roles
+                </button>
+            </div>
+        </form>
+
+    </div>
+</main>

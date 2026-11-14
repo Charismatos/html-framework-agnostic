@@ -1,0 +1,59 @@
+<!--
+  =============================================================================
+  WHAT: Enterprise User Role Assignment Details Layout (Framework-Agnostic HTML)
+  WHEN: Deployed in non-Laravel systems (e.g., Node.js, Python, Ruby, or static frontends).
+  WHY:  Provides a completely decoupled, semantic user interface structure free of framework dependencies for inspecting user role assignments and profile authority levels.
+  WHO:  Frontend engineers, full-stack architects, and system administrators.
+  WHERE: Saved as public/layouts/role-assigned-show.html or integrated into template engines.
+  HOW:  Renders responsive profile summary panels, active role listing cards, and dashboard navigation action hooks.
+  -----------------------------------------------------------------------------
+  FUTURE MODIFICATIONS & CUSTOMIZATION GUIDE:
+  - ADDING NEW ATTRIBUTES: Insert additional metadata rows or component references inside the user profile summary panel or role cards.
+  - MODIFYING ROUTE BINDINGS: Update the anchor `href` attributes to point to your backend routing endpoints.
+  =============================================================================
+-->
+
+<main>
+    <div>
+
+        <!-- Success Flash Notification Display -->
+        <div style="display: none;">
+            <!-- Flash message container -->
+        </div>
+
+        <!-- User Profile Summary Information Panel -->
+        <div style="background-color: #f9fafb; padding: 1.25rem; border-radius: 0.375rem; margin-bottom: 1.5rem;">
+            <h3 style="margin: 0 0 0.5rem 0;">John Doe</h3>
+            <p style="margin: 0; color: #4b5563; font-size: 0.875rem;">
+                <strong>Username:</strong> &#64;johndoe |
+                <strong>Email:</strong> user@example.com |
+                <strong>Highest Authority Level:</strong> Level 10
+            </p>
+        </div>
+
+        <!-- Assigned Active Roles Listing Section -->
+        <h3 style="margin-bottom: 0.75rem;">Assigned Active Roles</h3>
+        <div style="display: grid; gap: 0.75rem;">
+            <div style="border: 1px solid #e5e7eb; border-radius: 0.375rem; padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong>Administrator (admin)</strong>
+                    <span style="background-color: #dbeafe; color: #1e40af; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem;">Level 10</span>
+                </div>
+                <p style="margin: 0.5rem 0 0 0; color: #6b7280; font-size: 0.875rem;">Full system administrative privileges</p>
+            </div>
+            <div style="border: 1px solid #e5e7eb; border-radius: 0.375rem; padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong>Editor (editor)</strong>
+                    <span style="background-color: #dbeafe; color: #1e40af; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem;">Level 20</span>
+                </div>
+                <p style="margin: 0.5rem 0 0 0; color: #6b7280; font-size: 0.875rem;">Content management and moderation privileges</p>
+            </div>
+        </div>
+
+        <!-- Action Trigger Section -->
+        <div style="margin-top: 1.5rem; text-align: right;">
+            <a href="/dashboard">Go To Your Dashboard</a>
+        </div>
+
+    </div>
+</main>
